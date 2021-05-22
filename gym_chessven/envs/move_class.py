@@ -2,6 +2,27 @@
 #Создать класс, в котором будет учитываться начальное поле и конечное поле и куда необходимо нажать 
 # для этого ходп(пригодиться для рокировки и апргейда пешек). Также там можно иметь функцию преобразования 
 # в книжный вид для отображения истории игры
+
+file_table = {
+    '0': '8',
+    '1': '7',
+    '2': '6',
+    '3': '5',
+    '4': '4',
+    '5': '3',
+    '6': '2',
+    '7': '1',
+}
+rank_table = {
+    '0': 'a',
+    '1': 'b',
+    '2': 'c',
+    '3': 'd',
+    '4': 'e',
+    '5': 'f',
+    '6': 'g',
+    '7': 'h',
+}
 class CMove:
     def __init__(self, player_color, file_rank_from, file_rank_to = None, pawn_transformation = False, aisle = False):
         self.cell_from = file_rank_from
@@ -71,3 +92,10 @@ class CMove:
         Возвращает значение - можно ли после этого хода совершить взятие на проходе
         '''
         return self.aisle
+    def get_def_format(self):
+        if self.cell_to!= None:
+            def_format = rank_table[self.cell_to[1]] + file_table[self.cell_to[0]]+\
+                rank_table[self.cell_to[3]] + file_table[self.cell_to[2]]
+        else:
+            return self.cell_from 
+    #Функцию превращения сюда
